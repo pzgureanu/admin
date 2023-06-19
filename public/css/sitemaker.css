@@ -1,0 +1,77 @@
+/*review*/
+.review_header{
+    margin-top:20px;
+    font-weight: bold;
+    border-bottom: 1px solid #999;
+}
+.review_item{
+    border-bottom: 1px dotted #999999;
+    padding: 10px;
+    padding-left: 0px;
+}
+.review_user{
+    font-weight:bold;
+}
+.review_time{
+
+}
+.review_text{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.review_mark{
+    color: #333333;
+    height: 18px;
+}
+#jshop_review_write .inputbox{
+    width:180px;
+}
+.stars_no_active{
+    height:16px;
+    background-image:url(../images/star.gif);
+    background-repeat: repeat-x;
+    background-position: 0px 0px;
+}
+.stars_active{
+    height:16px;
+    background-image:url(../images/star.gif);
+    background-repeat: repeat-x;
+    background-position: 0px -16px;
+}
+.jshop .downlod_order_invoice{
+    float:right;
+}
+.jshop .order_payment_params{
+    padding-top:3px;
+    font-size: 11px;
+}
+.vendordetailinfo .name{
+    width:130px;
+}
+.requiredtext{
+    padding-bottom: 10px;
+    color: #A00;
+    font-size:11px;
+}
+.jshop .input_type_radio{
+    white-space: nowrap;
+    display: inline-block;
+}
+.jshop_profile_data{
+    margin-bottom: 10px;
+}
+.jshop_profile_data .name{
+    font-weight: bold;
+}
+.jshop_profile_data span{
+    font-weight: bold;
+}
+.jshop_profile_data span.subinfo{
+    font-size:10px;
+}
+.jshop_profile_data .jshop_user_group_info{
+    font-size:10px;
+}
+.jshop .groups_list .title{
+    width:150px;
+}
