@@ -289,6 +289,17 @@ return [
     |
     */
 
+    'extensions' => [
+        'summernote' => [
+            'cdn' => true,
+            'css' => [],
+            'js' => [
+                '/vendor/summernote/summernote-bs4.min.js',
+            ],
+        ],
+    ],
+
+
     'menu' => [
         // Navbar items:
         [
@@ -297,17 +308,16 @@ return [
         ],
 
         // Sidebar items:
-        ['header' => 'Language'],
+
         [
             'text' => 'Languages',
-            'url' => 'admin/langs',
-            'icon' => 'fas fa-language',
+            'url' => 'admin/languages',
+            'icon' => 'fas fa-fw fa-language',
         ],
-        ['header' => 'Pages'],
         [
-            'text' => 'Pages',
+            'text' => 'Pagini',
             'url' => 'admin/pages',
-            'icon' => 'far fa-file',
+            'icon' => 'fas fa-fw fa-file',
         ],
         ['header' => 'account_settings'],
         [
