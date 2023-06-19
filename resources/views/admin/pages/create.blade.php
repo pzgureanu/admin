@@ -34,11 +34,14 @@
     </div>
 </div>
 @stop
-
-@section('js')
+@push('css')
+<link rel="stylesheet" href="{{ asset('/vendor/summernote/summernote.css') }}">
+@endpush
+@push('js')
+<script src="{{ asset('/vendor/summernote/summernote.js') }}"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#summernote').summernote();
     });
 </script>
-@stop
+@endpush
