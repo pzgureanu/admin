@@ -325,6 +325,11 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Categories',
+            'url' => 'admin/categories',
+            'icon' => 'fas fa-fw fa-list',
+        ],
     ],
 
     /*

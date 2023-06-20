@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\IndexController;
 
@@ -20,20 +20,25 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.home');
-Route::get('/admin/langs', [LangController::class, 'index'])->name('admin.langs');
-Route::get('/admin/langs', [LangController::class, 'index'])->name('langs.index');
-Route::post('/admin/langs', [LangController::class, 'store'])->name('langs.store');
-Route::delete('/admin/langs/{id}', [LangController::class, 'destroy'])->name('langs.destroy');
-Route::resource('admin/pages', App\Http\Controllers\PageController::class);
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'auth'
+], function ($router) {
+    $router->resource('categories', CategoryController::class);
+    $router->get('/', [AdminController::class, 'index'])->name('admin.home');
+    // Deja nu mai avem nevoie de LangController.
+    // $router->get('/langs', [LangController::class, 'index'])->name('admin.langs');
+    // $router->get('/langs', [LangController::class, 'index'])->name('langs.index');
+    // $router->post('/langs', [LangController::class, 'store'])->name('langs.store');
+    // $router->delete('/langs/{id}', [LangController::class, 'destroy'])->name('langs.destroy');
+    $router->resource('admin/pages', App\Http\Controllers\PageController::class);
+    $router->resource('/pages', PageController::class);
+    $router->get('/pages', [PageController::class, 'index'])->name('pages.index');
+    $router->get('/pages/create', [PageController::class, 'create'])->name('pages.create');
+    $router->post('/pages', [PageController::class, 'store'])->name('pages.store');
+    $router->get('/pages/{page}', [PageController::class, 'show'])->name('pages.show');
+    $router->get('/pages/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
+    $router->put('/pages/{page}', [PageController::class, 'update'])->name('pages.update');
+    $router->delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
+});
 
-
-
-Route::resource('/admin/pages', PageController::class);
-Route::get('/admin/pages', [PageController::class, 'index'])->name('pages.index');
-Route::get('/admin/pages/create', [PageController::class, 'create'])->name('pages.create');
-Route::post('/admin/pages', [PageController::class, 'store'])->name('pages.store');
-Route::get('/admin/pages/{page}', [PageController::class, 'show'])->name('pages.show');
-Route::get('/admin/pages/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
-Route::put('/admin/pages/{page}', [PageController::class, 'update'])->name('pages.update');
-Route::delete('/admin/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
