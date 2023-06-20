@@ -14,7 +14,9 @@
                     <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                         @foreach ($languages as $key => $locale)
                         <li class="nav-item">
-                            <a class="nav-link @if($key === 0) active @endif" id="custom-tabs-one-home-tab" data-toggle="pill" href="#tab-{{$key}}" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">{{$locale}}</a>
+                            <a class="nav-link @if($key === 0) active @endif" id="custom-tabs-one-home-tab" data-toggle="pill" href="#tab-{{$key}}" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">
+                                <img src="{{ asset('/images/'. $locale.'.png')}}" style="width: 20px;" alt="">
+                            </a>
                         </li>
                         @endforeach
                     </ul>
