@@ -25,7 +25,7 @@
                             <tbody>
                                 @foreach ($sliders as $slider)
                                     <tr>
-                                        <td><img src="{{ $slider->getFirstMediaUrl('slider') }}" alt="{{ $slider->title }}" width="100"></td>
+                                        <td><img src="{{ $slider->getFirstMediaUrl('images') }}" alt="{{ $slider->title }}" width="100"></td>
                                         <td>{{ $slider->order }}</td>
                                         <td>{{ $slider->getTranslation('title', app()->getLocale()) }}</td>
                                         <td>
