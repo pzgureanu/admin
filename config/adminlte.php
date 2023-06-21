@@ -324,9 +324,19 @@ return [
             'icon' => 'fas fa-fw fa-list',
         ],
         [
+            'text' => 'Products',
+            'url' => 'admin/products',
+            'icon' => 'fas fa-fw fa-box',
+        ],
+        [
             'text' => 'Slider',
             'url' => 'admin/sliders',
             'icon' => 'far fa-images',
+        ],
+        [
+            'text' => 'Properties',
+            'url' => 'admin/properties',
+            'icon' => 'fas fa-sliders-h',
         ],
         // ['header' => 'account_settings'],
         // [
@@ -337,6 +347,7 @@ return [
 
 
     ],
+
 
     /*
     |--------------------------------------------------------------------------
