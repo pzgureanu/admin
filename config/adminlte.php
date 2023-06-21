@@ -338,6 +338,11 @@ return [
             'url' => 'admin/properties',
             'icon' => 'fas fa-sliders-h',
         ],
+        [
+            'text' => 'Filters',
+            'url' => 'admin/filters',
+            'icon' => 'fas fa-filter',
+        ],
         // ['header' => 'account_settings'],
         // [
         //     'text' => 'profile',

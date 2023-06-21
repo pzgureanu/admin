@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SliderController;
 
@@ -34,4 +35,5 @@ Route::group([
     $router->resource('sliders', SliderController::class);
     $router->resource('products', ProductController::class);
     $router->resource('properties', PropertyController::class);
+    $router->resource('filters', FilterController::class);
 });
