@@ -328,12 +328,12 @@ return [
             'url' => 'admin/sliders',
             'icon' => 'far fa-images',
         ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+        // ['header' => 'account_settings'],
+        // [
+        //     'text' => 'profile',
+        //     'url' => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
 
 
     ],
