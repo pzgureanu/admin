@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Slider;
+use Illuminate\Support\Arr;
 
 class SliderController extends Controller
 {
@@ -31,13 +32,33 @@ class SliderController extends Controller
     public function edit(Slider $slider)
     {
         $languages = $this->languages;
-        return view('sliders.edit', compact('slider', 'languages'));
+
+        return view('sliders.create', compact('slider', 'languages'));
     }
 
     public function store(Request $request)
     {
-        $slider = Slider::create($request->all());
-        $slider->addMediaFromRequest('image')->toMediaCollection('images');
+
+        if ($request->has('id')) {
+            $slider = Slider::find($request->get('id'));
+        } else {
+            $slider = new Slider();
+        }
+
+        $values = $request->all();
+
+        foreach ($this->languages as $language) {
+            $slider->setTranslation('title', $language, Arr::get($values, 'title.' . $language), '');
+        }
+
+        $slider->save();
+
+        // $slider->addMediaFromRequest('image')->toMediaCollection('images');
+        
+        if ($request->hasFile('image')) {
+            $slider->clearMediaCollection('images');
+            $slider->addMediaFromRequest('image')->toMediaCollection('images');
+        }
 
         return redirect()->route('sliders.index')
             ->with('success', 'Sliderul a fost creat cu succes.');

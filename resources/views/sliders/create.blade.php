@@ -8,7 +8,6 @@
             <form action="{{ route('sliders.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if (!empty($slider))
-                    @method('PUT')
                     <input type="hidden" name="id" value="{{ $slider->id }}">
                 @endif
                 <div class="form-group">
@@ -19,6 +18,16 @@
                     <label for="image">Imagine:</label>
                     <input type="file" name="image" class="form-control">
                 </div>
+
+                @php
+                    $mediaUrl = '';
+                    if (!empty($slider) && $slider->getMedia('images')) {
+                        $mediaUrl =  $slider->getMedia('images')->first()->getUrl();
+                    }
+                @endphp
+                @if(!empty($slider) && $mediaUrl)
+                    <img src="{{ $mediaUrl }}" alt="" class="img-thumbnail" style="max-width: 200px;" >
+                @endif
                 <div class="p-0 pt-1 mt-4">
                     <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                         @foreach ($languages as $key => $locale)
@@ -43,7 +52,7 @@
                     </div>
                     @endforeach
                 </div>
-                <button type="submit" class="btn btn-primary mb-4">
+                <button type="submit" class="btn btn-primary mb-4 mt-2">
                     <i class="fas fa-fw fa-save"></i>
                 </button>
             </form>
