@@ -1,36 +1,38 @@
 @extends('adminlte::page')
-
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card mt-4">
                     <div class="card-header">
-                        <div class="float-left text-xl">Lista paginilor</div>
+                        <div class="float-left text-xl">Pages</div>
                         <div class="float-right">
-                            <a href="{{ route('pages.create') }}" class="btn btn-success">Adaugă pagină nouă</a>
+                            <a href="{{ route('pages.create') }}" class="btn btn-success">
+                                <i class="fas fa-fw fa-plus"></i>
+                            </a>
                         </div>
                     </div>
-
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Titlu</th>
-                                    <th>Acțiuni</th>
+                                    <th style="width: 250px;">Acțiuni</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($pages as $page)
+                                @foreach ($pages as $page)
                                     <tr>
-                                        <td>{{ $page->title }}</td>
+                                        <td>{{ $page->getTranslation('title', app()->getLocale()) }}</td>
                                         <td>
-                                            <a href="{{ route('pages.show', $page) }}" class="btn btn-sm btn-info">Vizualizează</a>
-                                            <a href="{{ route('pages.edit', $page) }}" class="btn btn-sm btn-primary">Editează</a>
-                                            <form action="{{ route('pages.destroy', $page) }}" method="POST" style="display: inline-block;">
+                                            <a href="{{ route('pages.edit', $page) }}"
+                                                class="btn btn-sm btn-primary"> <i class="fas fa-fw fa-pen"></i></a>
+                                            <form action="{{ route('pages.destroy', $page) }}" method="POST"
+                                                style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Șterge</button>
+                                                <button type="submit" class="btn btn-sm btn-danger"><i
+                                                        class="fas fa-trash-alt"></i></i></button>
                                             </form>
                                         </td>
                                     </tr>

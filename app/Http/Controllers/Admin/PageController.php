@@ -3,41 +3,42 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
-class CategoryController extends Controller
+class PageController extends Controller
 {
     private $model = null;
     private $languages = null;
 
     public function __construct()
     {
-        $this->model = new Category();
+        $this->model = new Page();
         $this->languages = config('localized-routes.supported_locales');
     }
+
     public function index()
     {
-        $categories = Category::all();
+        $pages = Page::all();
 
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.pages.index', compact('pages'));
     }
 
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $page = Page::findOrFail($id);
 
         $languages = $this->languages;
 
-        return view('admin.categories.create', compact('category', 'languages'));
+        return view('admin.pages.create', compact('page', 'languages'));
     }
 
     public function create()
     {
         $languages = $this->languages;
 
-        return view('admin.categories.create', compact('languages'));
+        return view('admin.pages.create', compact('languages'));
     }
 
     public function store(Request $request)
@@ -48,39 +49,36 @@ class CategoryController extends Controller
         $translatable = $this->model->translatable;
 
         if ($request->has('id')) {
-            $category = Category::find($request->id);
+            $page = Page::find($request->id);
         } else {
-            $category = new Category();
+            $page = new Page();
         }
 
         foreach ($languages as $locale) {
 
             foreach ($translatable as $field) {
-                $category->setTranslation($field, $locale, Arr::get($params, $field . '.' . $locale), '');
+                $page->setTranslation($field, $locale, Arr::get($params, $field . '.' . $locale), '');
             }
         }
 
-        $category->active = $request->boolean('active');
+        $page->save();
 
-        $category->save();
-
-        return redirect()->route('categories.edit', $category->id);
+        return redirect()->route('pages.edit', $page->id);
     }
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
+        $page = Page::findOrFail($id);
 
-        $category->delete();
+        $page->delete();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('pages.index');
     }
 
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $page = Page::findOrFail($id);
 
-        return view('admin.categories.show', compact('category'));
+        return view('admin.pages.show', compact('page'));
     }
-
 }

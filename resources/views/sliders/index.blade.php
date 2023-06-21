@@ -5,9 +5,9 @@
             <div class="col-md-12">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <div class="float-left text-xl">Categories</div>
+                        <div class="float-left text-xl">Sliders</div>
                         <div class="float-right">
-                            <a href="{{ route('categories.create') }}" class="btn btn-success">
+                            <a href="{{ route('sliders.create') }}" class="btn btn-success">
                                 <i class="fas fa-fw fa-plus"></i>
                             </a>
                         </div>
@@ -16,23 +16,25 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th>Imagine</th>
+                                    <th>Ordine</th>
                                     <th>Titlu</th>
                                     <th style="width: 250px;">Acțiuni</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($sliders as $slider)
                                     <tr>
-                                        <td>{{ $category->getTranslation('title', app()->getLocale()) }}</td>
+                                        <td><img src="{{ $slider->getFirstMediaUrl('slider') }}" alt="{{ $slider->title }}" width="100"></td>
+                                        <td>{{ $slider->order }}</td>
+                                        <td>{{ $slider->getTranslation('title', app()->getLocale()) }}</td>
                                         <td>
-                                            <a href="{{ route('categories.edit', $category) }}"
-                                                class="btn btn-sm btn-primary"> <i class="fas fa-fw fa-pen"></i></a>
-                                            <form action="{{ route('categories.destroy', $category) }}" method="POST"
-                                                style="display: inline-block;">
+                                            <a href="{{ route('sliders.show', $slider) }}" class="btn btn-sm btn-info"><i class="fas fa-tv"></i></a>
+                                            <a href="{{ route('sliders.edit', $slider) }}" class="btn btn-sm btn-primary"> <i class="fas fa-fw fa-pen"></i></a>
+                                            <form action="{{ route('sliders.destroy', $slider) }}" method="POST" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger"><i
-                                                        class="fas fa-trash-alt"></i></i></button>
+                                                <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
                                             </form>
                                         </td>
                                     </tr>

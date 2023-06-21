@@ -18,7 +18,7 @@ return [
     'btn_close_all' => 'Close All',
     'btn_close_all_other' => 'Close Everything Else',
     'tab_empty' => 'No tab selected!',
-    'tab_home' => 'Home',
+    'tab_home' => 'Admin',
     'tab_loading' => 'Tab is loading',
 
 ];

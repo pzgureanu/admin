@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -308,16 +308,25 @@ return [
         ],
 
         // Sidebar items:
-
+        // [
+        //     'text' => 'Languages',
+        //     'url' => 'admin/languages',
+        //     'icon' => 'fas fa-fw fa-language',
+        // ],
         [
-            'text' => 'Languages',
-            'url' => 'admin/languages',
-            'icon' => 'fas fa-fw fa-language',
-        ],
-        [
-            'text' => 'Pagini',
+            'text' => 'Pages',
             'url' => 'admin/pages',
             'icon' => 'fas fa-fw fa-file',
+        ],
+        [
+            'text' => 'Categories',
+            'url' => 'admin/categories',
+            'icon' => 'fas fa-fw fa-list',
+        ],
+        [
+            'text' => 'Slider',
+            'url' => 'admin/sliders',
+            'icon' => 'far fa-images',
         ],
         ['header' => 'account_settings'],
         [
@@ -325,11 +334,8 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'Categories',
-            'url' => 'admin/categories',
-            'icon' => 'fas fa-fw fa-list',
-        ],
+
+
     ],
 
     /*
