@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use Illuminate\Support\Arr;
@@ -18,13 +19,13 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-        return view('sliders.index', compact('sliders'));
+        return view('admin.sliders.index', compact('sliders'));
     }
 
     public function create()
     {
         $languages = $this->languages;
-        return view('sliders.create', compact('languages'));
+        return view('admin.sliders.create', compact('languages'));
     }
 
     // restul metodelor
@@ -33,7 +34,7 @@ class SliderController extends Controller
     {
         $languages = $this->languages;
 
-        return view('sliders.create', compact('slider', 'languages'));
+        return view('admin.sliders.create', compact('slider', 'languages'));
     }
 
     public function store(Request $request)
@@ -54,7 +55,7 @@ class SliderController extends Controller
         $slider->save();
 
         // $slider->addMediaFromRequest('image')->toMediaCollection('images');
-        
+
         if ($request->hasFile('image')) {
             $slider->clearMediaCollection('images');
             $slider->addMediaFromRequest('image')->toMediaCollection('images');
@@ -66,7 +67,7 @@ class SliderController extends Controller
 
     public function show(Slider $slider)
     {
-        return view('sliders.show', compact('slider'));
+        return view('admin.sliders.show', compact('slider'));
     }
 
     public function update(Request $request, Slider $slider)
@@ -78,7 +79,7 @@ class SliderController extends Controller
             $slider->addMediaFromRequest('image')->toMediaCollection('images');
         }
 
-        return redirect()->route('sliders.index')
+        return redirect()->route('adminsliders.index')
             ->with('success', 'Sliderul a fost actualizat cu succes.');
     }
 

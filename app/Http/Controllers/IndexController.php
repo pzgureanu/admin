@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Slider;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.home');
+        $sliders = Slider::all();
+        return view('home', compact('sliders'));
     }
 }

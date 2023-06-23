@@ -7,9 +7,8 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\FilterController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\SliderController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

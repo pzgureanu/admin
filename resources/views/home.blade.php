@@ -1,7 +1,7 @@
 @extends('base')
 @section('content')
 @include('elements.menu')
-@include('elements.slider')
+@include('elements.slider', ['sliders' => $sliders])
 <div class="body_block">
     <div class="uk-container uk-container-center">
         <div id="tm-middle" class="tm-middle uk-grid" data-uk-grid-match="" data-uk-grid-margin="">

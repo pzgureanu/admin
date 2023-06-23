@@ -29,7 +29,6 @@
                                         <td>{{ $slider->order }}</td>
                                         <td>{{ $slider->getTranslation('title', app()->getLocale()) }}</td>
                                         <td>
-                                            <a href="{{ route('sliders.show', $slider) }}" class="btn btn-sm btn-info"><i class="fas fa-tv"></i></a>
                                             <a href="{{ route('sliders.edit', $slider) }}" class="btn btn-sm btn-primary"> <i class="fas fa-fw fa-pen"></i></a>
                                             <form action="{{ route('sliders.destroy', $slider) }}" method="POST" style="display: inline-block;">
                                                 @csrf
