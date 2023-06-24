@@ -15,6 +15,8 @@ class CreateProductsTable extends Migration
             $table->longText('meta_description')->nullable();
             $table->longText('body')->nullable();
             $table->boolean('active')->default(true);
+            $table->boolean('is_new')->default(false); // Noua coloană "is_new"
+            $table->boolean('is_brand')->default(false); // Noua coloană "is_brand"
 
             $table->timestamps();
         });

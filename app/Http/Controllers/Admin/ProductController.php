@@ -60,7 +60,9 @@ class ProductController extends Controller
             }
         }
 
-        $product->active = $request->get('active', false);
+        $product->active = $request->has('active') ? true : false;
+        $product->is_new = $request->has('is_new') ? true : false;
+        $product->is_brand = $request->has('is_brand') ? true : false;
 
         $product->save();
 
@@ -69,7 +71,7 @@ class ProductController extends Controller
             $product->addMediaFromRequest('imagine')->toMediaCollection('images');
         }
 
-        return redirect()->route('products.edit', $product->id);
+        return redirect()->route('products.index', $product->id);
     }
 
     public function destroy($id)
@@ -87,4 +89,5 @@ class ProductController extends Controller
 
         return view('admin.products.show', compact('product'));
     }
+    
 }

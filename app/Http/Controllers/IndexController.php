@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Slider;
+use App\Models\Product;
 
 class IndexController extends Controller
 {
     public function index()
     {
         $sliders = Slider::all();
-        return view('home', compact('sliders'));
+        $brandProducts = Product::where('is_brand', true)->get();
+        $newProducts = Product::where('is_new', true)->get();
+
+        return view('home', compact('sliders', 'brandProducts', 'newProducts'));
     }
 }

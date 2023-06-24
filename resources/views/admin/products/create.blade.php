@@ -52,36 +52,52 @@
                                     @endphp
                                     <textarea name="meta_description[{{ $locale }}]" class="form-control" rows="3">{{ $value }}</textarea>
                                 </div>
-                            <div class="form-group">
-                                <label for="body">Body:</label>
-                                @php
-                                    $value = empty($product) ? '' : $product->getTranslation('body', $locale);
-                                @endphp
-                                <textarea name="body[{{ $locale }}]" class="summernote" rows="40">{{ $value }}</textarea>
+                                <div class="form-group">
+                                    <label for="body">Body:</label>
+                                    @php
+                                        $value = empty($product) ? '' : $product->getTranslation('body', $locale);
+                                    @endphp
+                                    <textarea name="body[{{ $locale }}]" class="summernote" rows="40">{{ $value }}</textarea>
+                                </div>
                             </div>
-                        </div>
-                            @endforeach
-                        </div>
+                        @endforeach
+                    </div>
 
-            <div class="form-group mt-4">
-                <label for="imagine">Imagine:</label>
-                <input type="file" id="imagine" name="imagine">
+                    <div class="form-group mt-4">
+                        <label for="imagine">Imagine:</label>
+                        <input type="file" id="imagine" name="imagine">
+                    </div>
+
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" name="active" id="active"
+                            {{ !empty($product) && $product->active ? 'checked' : '' }}>
+                        <label class="form-check-label" for="active">
+                            Active
+                        </label>
+                    </div>
+
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" name="is_new" id="is_new"
+                            {{ !empty($product) && $product->is_new ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_new">
+                            Nou
+                        </label>
+                    </div>
+
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" name="is_brand" id="is_brand"
+                            {{ !empty($product) && $product->is_brand ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_brand">
+                            Brand
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3">
+                        <i class="fas fa-fw fa-save"></i>
+                    </button>
+                </form>
             </div>
-
-            <div class="form-check mt-4">
-                <input class="form-check-input" type="checkbox" name="active" id="active"
-                    {{ !empty($product) && $product->active ? 'checked' : '' }}>
-                <label class="form-check-label" for="active">
-                    Active
-                </label>
-            </div>
-
-            <button type="submit" class="btn btn-primary mt-3">
-                <i class="fas fa-fw fa-save"></i>
-            </button>
-            </form>
         </div>
-    </div>
     </div>
 @stop
 
