@@ -38,4 +38,5 @@ Route::group([
     $router->resource('products', ProductController::class);
     $router->resource('properties', PropertyController::class);
     $router->resource('filters', FilterController::class);
+    $router->post('product-delete-image', [ProductController::class, 'productDeleteImage']);
 });

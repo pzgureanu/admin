@@ -32,7 +32,7 @@
                                         <td>{{ $product->active ? 'Yes' : 'No' }}</td>
                                         <td>
                                             <!-- Display the image -->
-                                            <img src="{{ $product->getFirstMediaUrl('images') }}" style="width: 60px;">
+                                            <img src="{{ $product->getFirstMediaUrl('main') }}" style="width: 60px;">
                                         </td>
                                         <td>
                                             <a href="{{ route('products.edit', $product) }}" class="btn btn-sm btn-primary">

@@ -4,7 +4,7 @@
             <a itemprop="url" href="{{ route(app()->getLocale(). '.laptop', $product->slug)}}">
                 @if($product->hasMedia('images'))
                     <!-- Preia prima imagine din colecția de imagini a produsului -->
-                    <img itemprop="image" class="jshop_img" src="{{ $product->getFirstMediaUrl('images') }}" alt="{{ $product->getTranslation('title', 'ro') }}">
+                    <img itemprop="image" class="jshop_img" src="{{ $product->getFirstMediaUrl('main') }}" alt="{{ $product->getTranslation('title', 'ro') }}">
                 @else
                     <!-- O imagine placeholder în cazul în care produsul nu are imagini -->
                     <img itemprop="image" class="jshop_img" src="{{ asset('path/to/placeholder.png') }}" alt="No image">

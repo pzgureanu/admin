@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ProductController extends Controller
 {
@@ -69,8 +70,15 @@ class ProductController extends Controller
         $product->save();
 
         if ($request->hasFile('imagine')) {
-            $product->clearMediaCollection('images');
-            $product->addMediaFromRequest('imagine')->toMediaCollection('images');
+            $product->clearMediaCollection('main');
+            $product->addMediaFromRequest('imagine')->toMediaCollection('main');
+        }
+
+
+        if ($images = $request->file('images')) {
+            foreach ($images as $image) {
+                $product->addMedia($image)->toMediaCollection('images');
+            }
         }
 
         return redirect()->route('products.index', $product->id);
@@ -91,5 +99,13 @@ class ProductController extends Controller
 
         return view('admin.products.show', compact('product'));
     }
-    
+
+    public function productDeleteImage(Request $request)
+    {
+        Media::find($request->id)->delete();
+            
+        return json_encode([
+            'deleted' => 1
+        ]);
+    }
 }
