@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use App\Models\ProductType;
 
 class ProductController extends Controller
 {
@@ -66,9 +65,6 @@ class ProductController extends Controller
         $product->active = $request->has('active') ? true : false;
         $product->is_new = $request->has('is_new') ? true : false;
         $product->is_brand = $request->has('is_brand') ? true : false;
-
-        // Adauga acesta linie de cod pentru a salva product_type_id
-        $product->product_type_id = $request->input('product_type_id');
 
         $product->save();
 

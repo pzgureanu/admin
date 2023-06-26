@@ -17,4 +17,11 @@ class IndexController extends Controller
         $productTypes = ProductType::all();
         return view('home', compact('sliders', 'brandProducts', 'newProducts', 'productTypes'));
     }
+
+    public function laptop($slug)
+    {
+        $laptop = Product::whereSlug($slug)->firstOrFail();
+        
+        return view('laptop', compact('laptop'));
+    }
 }

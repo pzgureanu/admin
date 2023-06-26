@@ -1,7 +1,7 @@
 <div class="uk-width-1-1 uk-width-medium-1-4">
     <div class="list_product_block" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/Product">
         <div class="image_block">
-            <a itemprop="url" href="#">
+            <a itemprop="url" href="{{ route(app()->getLocale(). '.laptop', $product->slug)}}">
                 @if($product->hasMedia('images'))
                     <!-- Preia prima imagine din colecția de imagini a produsului -->
                     <img itemprop="image" class="jshop_img" src="{{ $product->getFirstMediaUrl('images') }}" alt="{{ $product->getTranslation('title', 'ro') }}">

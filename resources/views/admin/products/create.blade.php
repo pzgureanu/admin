@@ -7,6 +7,14 @@
         <div class="row">
             <div class="col-md-12">
                 <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                    <div class="form-group mt-4">
+                        <label for="">Slug</label>
+                        @php
+                            $value = empty($product) ? '' : $product->slug;
+                            $value = old('slug', $value);
+                        @endphp
+                        <input type="text" name="slug" id="" value="{{ $value }}" class="form-control">
+                    </div>
                     @csrf
                     @if (!empty($product))
                         <input type="hidden" name="id" value="{{ $product->id }}">

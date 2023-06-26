@@ -20,6 +20,7 @@
         $('.uk-navbar-nav a[href*="#"]').attr('data-uk-smooth-scroll', '{offset:70}');
     });
 </script>
+@stack('scripts')
 </body>
 
 </html>
