@@ -11,6 +11,19 @@
                     @if (!empty($product))
                         <input type="hidden" name="id" value="{{ $product->id }}">
                     @endif
+
+                    {{-- Select input for product type --}}
+                    <div class="form-group">
+                        <label for="product_type_id">Product Type:</label>
+                        <select name="product_type_id" id="product_type_id" class="form-control">
+                            @foreach ($productTypes as $productType)
+                                <option value="{{ $productType->id }}"
+                                    {{ !empty($product) && $product->product_type_id == $productType->id ? 'selected' : '' }}>
+                                    {{ $productType->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="p-0 pt-1 mt-4">
                         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                             @foreach ($languages as $key => $locale)

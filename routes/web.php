@@ -8,7 +8,10 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\ProductTypeController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\IndexController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,4 +38,6 @@ Route::group([
     $router->resource('products', ProductController::class);
     $router->resource('properties', PropertyController::class);
     $router->resource('filters', FilterController::class);
+    $router->resource('product_types', ProductTypeController::class);
+    $router->resource('settings', SettingController::class);
 });

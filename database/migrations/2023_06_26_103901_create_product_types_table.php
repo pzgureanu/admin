@@ -4,25 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateProductTypesTable extends Migration
 {
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('product_types', function (Blueprint $table) {
             $table->id();
             $table->longText('title')->nullable();
             $table->longText('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
-            $table->longText('body')->nullable();
-            $table->boolean('active')->default(true);
-            $table->boolean('is_new')->default(false);
-            $table->boolean('is_brand')->default(false); 
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_types');
     }
 }

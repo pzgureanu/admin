@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use App\Models\ProductType;
 
 class ProductController extends Controller
 {
@@ -30,15 +31,17 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         $languages = $this->languages;
+        $productTypes = ProductType::all();
 
-        return view('admin.products.create', compact('product', 'languages'));
+        return view('admin.products.create', compact('product', 'languages', 'productTypes'));
     }
 
     public function create()
     {
         $languages = $this->languages;
+        $productTypes = ProductType::all();
 
-        return view('admin.products.create', compact('languages'));
+        return view('admin.products.create', compact('languages', 'productTypes'));
     }
 
     public function store(Request $request)
@@ -64,6 +67,9 @@ class ProductController extends Controller
         $product->is_new = $request->has('is_new') ? true : false;
         $product->is_brand = $request->has('is_brand') ? true : false;
 
+        // Adauga acesta linie de cod pentru a salva product_type_id
+        $product->product_type_id = $request->input('product_type_id');
+
         $product->save();
 
         if ($request->hasFile('imagine')) {
@@ -73,6 +79,7 @@ class ProductController extends Controller
 
         return redirect()->route('products.index', $product->id);
     }
+
 
     public function destroy($id)
     {
@@ -89,5 +96,5 @@ class ProductController extends Controller
 
         return view('admin.products.show', compact('product'));
     }
-    
+
 }

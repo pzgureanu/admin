@@ -1,6 +1,6 @@
 @extends('base')
 @section('content')
-    @include('elements.menu')
+    @include('elements.menu', ['productTypes' => $productTypes])
     @include('elements.slider', ['sliders' => $sliders])
     <div class="body_block">
         <div class="uk-container uk-container-center">
