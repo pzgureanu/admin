@@ -20,8 +20,11 @@ class IndexController extends Controller
 
     public function laptop($slug)
     {
-        $laptop = Product::whereSlug($slug)->firstOrFail();
-        
-        return view('laptop', compact('laptop'));
+        $product = Product::whereSlug($slug)->firstOrFail();
+        $productTypes = ProductType::all();
+        $images = $product->getMedia('images'); // presupunând că 'images' este colecția unde sunt stocate imaginile
+
+        return view('laptop', compact('product', 'productTypes', 'images'));
     }
+
 }

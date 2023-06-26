@@ -3,7 +3,7 @@
         <div class="uk-sticky-placeholder" style="height: 138px; margin: 0px;">
             <div data-uk-sticky="" class="sticky_bar" style="margin: 0px;">
                 <div class="uk-container uk-container-center">
-                    <div class="logo_block"><a href="https://comtel.md/"><img src="{{ asset('/images/logo.jpg') }}"
+                    <div class="logo_block"><a href="{{route('home')}}"><img src="{{ asset('/images/logo.jpg') }}"
                                 alt="Logo"></a>
                     </div>
                     <div class="header_info_block">
@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="uk-dropdown menu_dropdown" aria-hidden="true">
                                         <ul class="uk-navbar-nav uk-hidden-small">
-                                            <li class="uk-active"><a href="https://comtel.md/"
+                                            <li class="uk-active"><a href="{{ route('home') }}"
                                                     class="homepage">Главная</a></li>
                                             <li class="uk-parent" data-uk-dropdown="{&#39;preventflip&#39;:&#39;y&#39;}"
                                                 aria-haspopup="true" aria-expanded="false"><a

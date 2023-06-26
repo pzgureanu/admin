@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use App\Models\ProductType;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -65,6 +67,10 @@ class ProductController extends Controller
         $product->active = $request->has('active') ? true : false;
         $product->is_new = $request->has('is_new') ? true : false;
         $product->is_brand = $request->has('is_brand') ? true : false;
+        $product->slug = Str::slug($request->input('slug'));
+
+        // Adauga acesta linie de cod pentru a salva product_type_id
+        $product->product_type_id = $request->input('product_type_id');
 
         $product->save();
 
@@ -93,4 +99,9 @@ class ProductController extends Controller
         return view('admin.products.show', compact('product'));
     }
 
+    public function showProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('directory_name.laptop', compact('product'));
+    }
 }
