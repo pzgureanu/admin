@@ -4,66 +4,86 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
-                <div class="form-group mt-4">
-                    <label for="">Slug</label>
-                    @php
-                    $value = empty($product) ? '' : $product->slug;
-                    $value = old('slug', $value);
-                    @endphp
-                    <input type="text" name="slug" id="" value="{{ $value }}" class="form-control">
-                </div>
-                @csrf
-                @if (!empty($product))
-                <input type="hidden" name="id" value="{{ $product->id }}">
-                @endif
-                <div class="p-0 pt-1 mt-4">
-                    <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                        @foreach ($languages as $key => $locale)
-                        <li class="nav-item">
-                            <a class="nav-link @if ($key === 0) active @endif" id="custom-tabs-one-home-tab" data-toggle="pill" href="#tab-{{ $key }}" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">
-                                <img src="{{ asset('/images/' . $locale . '.png') }}" style="width: 20px;" alt="">
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <div class="tab-content p-4 border bg-white border-top-0" id="custom-tabs-one-tabContent">
-                    @foreach ($languages as $k => $locale)
-                    <div class="tab-pane fade @if ($k === 0) show active @endif" id="tab-{{ $k }}" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-                        <div class="form-group">
-                            <label for="title">Title:</label>
-                            @php
-                            $value = empty($product) ? '' : $product->getTranslation('title', $locale);
-                            @endphp
-                            <input type="text" name="title[{{ $locale }}]" class="form-control" value="{{ $value }}">
-                        </div>
-                        <div class="form-group">
-                            @php
-                            $value = empty($product) ? '' : $product->getTranslation('meta_title', $locale);
-                            @endphp
-                            <label for="meta_title">Meta Title:</label>
-                            <input type="text" name="meta_title[{{ $locale }}]" class="form-control" value="{{ $value }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="meta_description">Meta Description:</label>
-                            @php
-                            $value = empty($product) ? '' : $product->getTranslation('meta_description', $locale);
-                            @endphp
-                            <textarea name="meta_description[{{ $locale }}]" class="form-control" rows="3">{{ $value }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="body">Body:</label>
-                            @php
-                            $value = empty($product) ? '' : $product->getTranslation('body', $locale);
-                            @endphp
-                            <textarea name="body[{{ $locale }}]" class="summernote" rows="40">{{ $value }}</textarea>
-                        </div>
+   <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                    <div class="form-group mt-4">
+                        <label for="">Slug</label>
+                        @php
+                            $value = empty($product) ? '' : $product->slug;
+                            $value = old('slug', $value);
+                        @endphp
+                        <input type="text" name="slug" id="" value="{{ $value }}" class="form-control">
                     </div>
-                    @endforeach
-                </div>
+                    @csrf
+                    @if (!empty($product))
+                        <input type="hidden" name="id" value="{{ $product->id }}">
+                    @endif
+
+                    {{-- Select input for product type --}}
+                    <div class="form-group">
+                        <label for="product_type_id">Product Type:</label>
+                        <select name="product_type_id" id="product_type_id" class="form-control">
+                            @foreach ($productTypes as $productType)
+                                <option value="{{ $productType->id }}"
+                                    {{ !empty($product) && $product->product_type_id == $productType->id ? 'selected' : '' }}>
+                                    {{ $productType->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="p-0 pt-1 mt-4">
+                        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                            @foreach ($languages as $key => $locale)
+                                <li class="nav-item">
+                                    <a class="nav-link @if ($key === 0) active @endif"
+                                        id="custom-tabs-one-home-tab" data-toggle="pill" href="#tab-{{ $key }}"
+                                        role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">
+                                        <img src="{{ asset('/images/' . $locale . '.png') }}" style="width: 20px;"
+                                            alt="">
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="tab-content p-4 border bg-white border-top-0" id="custom-tabs-one-tabContent">
+                        @foreach ($languages as $k => $locale)
+                            <div class="tab-pane fade @if ($k === 0) show active @endif"
+                                id="tab-{{ $k }}" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                                <div class="form-group">
+                                    <label for="title">Title:</label>
+                                    @php
+                                        $value = empty($product) ? '' : $product->getTranslation('title', $locale);
+                                    @endphp
+                                    <input type="text" name="title[{{ $locale }}]" class="form-control"
+                                        value="{{ $value }}">
+                                </div>
+                                <div class="form-group">
+                                    @php
+                                        $value = empty($product) ? '' : $product->getTranslation('meta_title', $locale);
+                                    @endphp
+                                    <label for="meta_title">Meta Title:</label>
+                                    <input type="text" name="meta_title[{{ $locale }}]" class="form-control"
+                                        value="{{ $value }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="meta_description">Meta Description:</label>
+                                    @php
+                                        $value = empty($product) ? '' : $product->getTranslation('meta_description', $locale);
+                                    @endphp
+                                    <textarea name="meta_description[{{ $locale }}]" class="form-control" rows="3">{{ $value }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="body">Body:</label>
+                                    @php
+                                        $value = empty($product) ? '' : $product->getTranslation('body', $locale);
+                                    @endphp
+                                    <textarea name="body[{{ $locale }}]" class="summernote" rows="40">{{ $value }}</textarea>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
 
                 <div class="form-group mt-4">
                     <label for="imagine">Thumbnail:</label>
@@ -168,10 +188,10 @@
                     th.parent().remove();
                 });
             }
-           
+
         });
     });
 
-   
+
 </script>
 @endpush

@@ -343,12 +343,16 @@ return [
             'url' => 'admin/filters',
             'icon' => 'fas fa-filter',
         ],
-        // ['header' => 'account_settings'],
-        // [
-        //     'text' => 'profile',
-        //     'url' => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-user',
-        // ],
+        [
+            'text' => 'Product Type',
+            'url' => 'admin/product_types',
+            'icon' => 'fas fa-boxes',
+        ],
+        [
+            'text' => 'Settings',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-fw fa-wrench',
+        ],
 
 
     ],
