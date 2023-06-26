@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -63,6 +64,7 @@ class ProductController extends Controller
         $product->active = $request->has('active') ? true : false;
         $product->is_new = $request->has('is_new') ? true : false;
         $product->is_brand = $request->has('is_brand') ? true : false;
+        $product->slug = Str::slug($request->input('slug'));
 
         $product->save();
 

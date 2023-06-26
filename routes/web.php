@@ -20,7 +20,10 @@ use App\Http\Controllers\IndexController;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::localized(function () {
+    Route::get('/', [IndexController::class, 'index'])->name('home');
+    Route::get('/catalog/laptops/{slug}', [IndexController::class, 'laptop'])->name('laptop');
+});
 
 Auth::routes();
 
