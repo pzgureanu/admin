@@ -28,4 +28,9 @@ class Product extends Model implements HasMedia
             ->width(100)
             ->height(100);
     }
+
+    public function properties()
+    {
+        return $this->hasMany(ProductProperty::class);
+    }
 }

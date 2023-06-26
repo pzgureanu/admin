@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductProperty;
+use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Models\ProductType;
@@ -34,16 +36,18 @@ class ProductController extends Controller
 
         $languages = $this->languages;
         $productTypes = ProductType::all();
+        $properties = Property::all();
 
-        return view('admin.products.create', compact('product', 'languages', 'productTypes'));
+        return view('admin.products.create', compact('properties', 'product', 'languages', 'productTypes'));
     }
 
     public function create()
     {
         $languages = $this->languages;
         $productTypes = ProductType::all();
+        $properties = Property::all();
 
-        return view('admin.products.create', compact('languages', 'productTypes'));
+        return view('admin.products.create', compact('properties', 'languages', 'productTypes'));
     }
 
     public function store(Request $request)
@@ -84,6 +88,28 @@ class ProductController extends Controller
         if ($images = $request->file('images')) {
             foreach ($images as $image) {
                 $product->addMedia($image)->toMediaCollection('images');
+            }
+        }
+
+        if ($request->has('properties')) {
+            if ($product->properties) {
+                $product->properties()->delete();
+            }
+
+            $properties = $request->get('properties', []);
+
+            foreach ($properties as $key => $property) {
+                $productProperty = new ProductProperty();
+                $productProperty->product_id = $product->id;
+                $productProperty->property_id = $key;
+                foreach ($languages as $locale) {
+                    $value = Arr::get($properties, $key . '.' . $locale);
+                    if (empty($value)) {
+                        continue;
+                    }
+                    $productProperty->setTranslation('value', $locale, $value, '');
+                }
+                $productProperty->save();
             }
         }
 
