@@ -63,12 +63,21 @@
                                         <div class="uk-width-1-1 uk-width-medium-3-4">
                                             <!---->
                                             <div class="main_image">
-                                                @if ($images->isNotEmpty())
-                                                    @foreach ($images as $image)
-                                                        <a data-uk-lightbox="{group:'product'}" class="lightbox"
-                                                            href="{{ $image->getUrl() }}" title="{{ $product->title }}">
+                                                @if ($product->hasMedia('images'))
+                                                    @foreach ($product->getMedia('images') as $image)
+                                                        @php
+                                                        $display = $loop->index === 0 ? 'display: block': 'display: none';
+
+                                                        @endphp
+                                                        <a data-uk-lightbox="{group:'product'}" 
+                                                            class="lightbox"
+                                                            href="{{ $image->getUrl() }}" 
+                                                            title="{{ $product->title }}"
+                                                            id="main_image_full_{{ $image->id}}"
+                                                            style="{{ $display }}"
+                                                            >
                                                             <img itemprop="image"
-                                                                src="{{ $product->getFirstMediaUrl('images') }}"
+                                                                src="{{ $image->getUrl() }}"
                                                                 alt="{{ $product->getTranslation('title', 'ro') }}"
                                                                 title="{{ $product->getTranslation('title', 'ro') }}">
                                                         </a>
@@ -84,7 +93,7 @@
                                                             <img class="jshop_img_thumb" src="{{ $image->getUrl('thumb') }}"
                                                             alt="{{ $product->getTranslation('title', 'ro') }}"
                                                             title="{{ $product->getTranslation('title', 'ro') }}"
-                                                            onclick="showImage({{ $loop->index }})">
+                                                            onclick="showImage({{ $image->id }})">
                                                         </div>
                                                     @endforeach
                                                 @endif

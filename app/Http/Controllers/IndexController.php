@@ -22,9 +22,8 @@ class IndexController extends Controller
     {
         $product = Product::whereSlug($slug)->firstOrFail();
         $productTypes = ProductType::all();
-        $images = $product->getMedia('images'); // presupunând că 'images' este colecția unde sunt stocate imaginile
-
-        return view('laptop', compact('product', 'productTypes', 'images'));
+      
+        return view('laptop', compact('product', 'productTypes'));
     }
 
 }

@@ -98,7 +98,7 @@
 
                         <div class="form-group mt-4">
                             <label for="images">Images:</label>
-                            <input type="file" id="images" name="images[]" multiple>
+                            <input type="file" id="images" name="images[]" accept="image/*" multiple>
                         </div>
 
                         @if($product)
