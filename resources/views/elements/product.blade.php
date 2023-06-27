@@ -17,8 +17,6 @@
             <!-- Include aici informațiile despre preț -->
         </div>
         <div class="info_block">
-
-
             <div class="description">
             </div>
             <div class="short_info">
@@ -37,7 +35,6 @@
             <div class="clr"></div>
             <div class="quantity">
             </div>
-
         </div>
     </div>
 </div>

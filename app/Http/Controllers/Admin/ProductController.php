@@ -40,15 +40,16 @@ class ProductController extends Controller
 
         return view('admin.products.create', compact('properties', 'product', 'languages', 'productTypes'));
     }
-
     public function create()
     {
         $languages = $this->languages;
         $productTypes = ProductType::all();
         $properties = Property::all();
+        $product = new Product(); // Add this line
 
-        return view('admin.products.create', compact('properties', 'languages', 'productTypes'));
+        return view('admin.products.create', compact('properties', 'languages', 'productTypes', 'product')); // Include 'product' here
     }
+
 
     public function store(Request $request)
     {
@@ -57,9 +58,13 @@ class ProductController extends Controller
 
         $translatable = $this->model->translatable;
 
+        $product = null;
+
         if ($request->has('id')) {
             $product = Product::find($request->id);
-        } else {
+        }
+
+        if ($product === null) {
             $product = new Product();
         }
 
@@ -107,7 +112,7 @@ class ProductController extends Controller
                     if (empty($value)) {
                         continue;
                     }
-                    $productProperty->setTranslation('value', $locale, $value, '');
+                    $productProperty->setTranslation('value', $locale, $value);
                 }
                 $productProperty->save();
             }
@@ -145,6 +150,6 @@ class ProductController extends Controller
     public function showProduct($id)
     {
         $product = Product::findOrFail($id);
-        return view('directory_name.laptop', compact('product'));
+        return view('laptop', compact('product'));
     }
 }
