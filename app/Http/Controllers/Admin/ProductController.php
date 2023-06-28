@@ -78,6 +78,8 @@ class ProductController extends Controller
         $product->is_new = $request->has('is_new') ? true : false;
         $product->is_brand = $request->has('is_brand') ? true : false;
         $product->slug = Str::slug($request->input('slug'));
+        $product->price = $request->input('price');
+        $product->discount = $request->input('discount');
 
         // Adauga acesta linie de cod pentru a salva product_type_id
         $product->product_type_id = $request->input('product_type_id');

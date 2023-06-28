@@ -36,6 +36,12 @@
                             value="{{ $setting->schedule ?? '' }}">
                     </div>
 
+                    <div class="form-group">
+                        <label for="weekend_schedule">Program weekend:</label>
+                        <input type="text" name="weekend_schedule" class="form-control"
+                            value="{{ $setting->weekend_schedule ?? '' }}">
+                    </div>
+
                     <!-- Social media links -->
                     <div class="form-group">
                         <label for="instagram">Instagram:</label>

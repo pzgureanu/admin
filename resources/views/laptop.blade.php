@@ -66,18 +66,14 @@
                                                 @if ($product->hasMedia('images'))
                                                     @foreach ($product->getMedia('images') as $image)
                                                         @php
-                                                        $display = $loop->index === 0 ? 'display: block': 'display: none';
-
+                                                            $display = $loop->index === 0 ? 'display: block' : 'display: none';
+                                                            
                                                         @endphp
-                                                        <a data-uk-lightbox="{group:'product'}" 
-                                                            class="lightbox"
-                                                            href="{{ $image->getUrl() }}" 
-                                                            title="{{ $product->title }}"
-                                                            id="main_image_full_{{ $image->id}}"
-                                                            style="{{ $display }}"
-                                                            >
-                                                            <img itemprop="image"
-                                                                src="{{ $image->getUrl() }}"
+                                                        <a data-uk-lightbox="{group:'product'}" class="lightbox"
+                                                            href="{{ $image->getUrl() }}" title="{{ $product->title }}"
+                                                            id="main_image_full_{{ $image->id }}"
+                                                            style="{{ $display }}">
+                                                            <img itemprop="image" src="{{ $image->getUrl() }}"
                                                                 alt="{{ $product->getTranslation('title', 'ro') }}"
                                                                 title="{{ $product->getTranslation('title', 'ro') }}">
                                                         </a>
@@ -91,9 +87,9 @@
                                                     @foreach ($product->getMedia('images') as $image)
                                                         <div>
                                                             <img class="jshop_img_thumb" src="{{ $image->getUrl('thumb') }}"
-                                                            alt="{{ $product->getTranslation('title', 'ro') }}"
-                                                            title="{{ $product->getTranslation('title', 'ro') }}"
-                                                            onclick="showImage({{ $image->id }})">
+                                                                alt="{{ $product->getTranslation('title', 'ro') }}"
+                                                                title="{{ $product->getTranslation('title', 'ro') }}"
+                                                                onclick="showImage({{ $image->id }})">
                                                         </div>
                                                     @endforeach
                                                 @endif
@@ -106,71 +102,13 @@
                                         <div class="uk-width-1-1 uk-width-medium-1-2">
                                             <div class="infoblock">
                                                 <div class="extra_fields">
-                                                    <div class="extra_fields_el extra_field_9">
-                                                        <span class="extra_fields_name">
-                                                            CPU:
-                                                        </span>
-                                                        <span class="extra_fields_value">
-                                                            Intel Celeron-2955U </span>
-                                                    </div>
-                                                    <div class="extra_fields_el extra_field_6">
-                                                        <span class="extra_fields_name">
-                                                            Тип памяти:
-                                                        </span>
-                                                        <span class="extra_fields_value">
-                                                            HDD </span>
-                                                    </div>
-                                                    <div class="extra_fields_el extra_field_14">
-                                                        <span class="extra_fields_name">
-                                                            Объём памяти:
-                                                        </span>
-                                                        <span class="extra_fields_value">
-                                                            512 GB </span>
-                                                    </div>
-                                                    <div class="extra_fields_el extra_field_7">
-                                                        <span class="extra_fields_name">
-                                                            Дисплей:
-                                                        </span>
-                                                        <span class="extra_fields_value">
-                                                            15.6 </span>
-                                                    </div>
-                                                    <div class="extra_fields_el extra_field_15">
-                                                        <span class="extra_fields_name">
-                                                            Разрешение:
-                                                        </span>
-                                                        <span class="extra_fields_value">
-                                                            1366x768 px </span>
-                                                    </div>
-                                                    <div class="extra_fields_el extra_field_8">
-                                                        <span class="extra_fields_name">
-                                                            RAM:
-                                                        </span>
-                                                        <span class="extra_fields_value">
-                                                            4 GB </span>
-                                                    </div>
-                                                    <div class="extra_fields_el extra_field_13">
-                                                        <span class="extra_fields_name">
-                                                            Видеокарта:
-                                                        </span>
-                                                        <span class="extra_fields_value">
-                                                            Intel HD Graphics </span>
-                                                    </div>
-                                                    <div class="extra_fields_el extra_field_11">
-                                                        <span class="extra_fields_name">
-                                                            Battery:
-                                                        </span>
-                                                        <span class="extra_fields_value">
-                                                            2 часа </span>
-                                                    </div>
-                                                    <div class="extra_field_0"><span class="extra_fields_value">Товар
-                                                            сертифицирован</span>
-                                                    </div>
-                                                    <div class="extra_field_0"><span class="extra_fields_value">Гарантия
-                                                            качества</span>
-                                                    </div>
-
+                                                    @foreach ($product->properties as $property)
+                                                        <div>
+                                                            {{ $property->property->getTranslation('title', app()->getLocale()) }}:
+                                                            {{ $property->getTranslation('value', app()->getLocale()) }}
+                                                        </div>
+                                                    @endforeach
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="uk-width-1-1 uk-width-medium-1-2">
@@ -179,11 +117,9 @@
                                                 <div class="uk-grid">
                                                     <div class="uk-width-1-1">
                                                         <div itemprop="offers" itemscope=""
-                                                            itemtype="http://schema.org/Offer"
-                                                            class="price_block_product">
+                                                            itemtype="http://schema.org/Offer" class="price_block_product">
                                                             <link itemprop="url" href="https://comtel.md/">
-                                                            <link itemprop="availability"
-                                                                href="http://schema.org/InStock">
+                                                            <link itemprop="availability" href="http://schema.org/InStock">
                                                             <meta itemprop="price" content="2500.000000">
                                                             <meta itemprop="priceCurrency" content="MDL">
                                                             <meta itemprop="itemCondition"
@@ -198,10 +134,22 @@
                                                                 <div class="uk-vertical-align-bottom">
                                                                     <div class="price_product prod_price">
                                                                         <span id="block_price">
-                                                                            2500 MDL </span>
+                                                                            @if ($product->discount)
+                                                                                <span class="original-price"
+                                                                                    style="text-decoration: line-through; color: #c0c0c0;">
+                                                                                    {{ intval($product->price) }} MDL
+                                                                                </span>
+                                                                                <span class="discounted-price">
+                                                                                    {{ intval($product->discount) }} MDL
+                                                                                </span>
+                                                                            @else
+                                                                                {{ intval($product->price) }} MDL
+                                                                            @endif
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                             <input type="hidden" name="to" id="to"
                                                                 value="cart"><input type="hidden" name="product_id"
                                                                 id="product_id" value="533"><input type="hidden"
@@ -214,39 +162,28 @@
                                         </div>
                                     </div>
                                     <div itemprop="description" class="product_description">
-                                        <p><strong>Характеристики:</strong></p>
-                                        <p>&gt;Процессор: Intel Celeron-2955U CPU 1.40 GHz DualCore<br>&gt;Оперативная
-                                            память: 4 GB DDR3<br>&gt;Жёсткий диск: 500 GB HDD<br>&gt;Дисплей: 15.6*-дюймов,
-                                            1366x768 HD<br>&gt;Видеокарта:Intel HD Graphics<br>&gt;Батарея: 2
-                                            ч<br>Оригинальная
-                                            зарядка</p>
-                                        <p><strong>Описание товара:</strong></p>
-                                        <p>Отличное решение для ежедневных задач!<br>Легко с ними справляется!</p>
-                                        <p>Вас порадует тихая работа лэптопа!<br>Скорость загрузки и качество изображения!
-                                        </p>
-                                        <p>Удобно брать с собой, портативный и легкий!</p>
-                                        <p><strong>Есть гарантия!</strong><br><strong>Можно в кредит!</strong></p>
-                                        <p><strong>Работаем также с переводами на компанию!</strong></p>
+                                        {!! $product->body !!}
                                     </div>
-                                    <!--<div class="delivery_info">
-                    <div class="moduletable">
-                  
-             <h3>Доставка и оплата</h3>
-            <h4>Bodypit доставляет заказы по всей Молдове!</h4>
-            <ul>
-                <li>Мы доставим Ваши покупки по удобному для вас адресу в Кишиневе совершенно бесплатно при заказе от 300 леев.</li>
-                <li>Также мы предлагаем Express доставку в течении 3-х часов (по Кишиневу) по отдельному тарифу.</li>
-                <li>Стоимость доставки по территории Молдовы оговаривается отдельно.</li>
-            </ul>
-            <h4>Способ оплаты</h4>
-            <p>Мы принимаем любой способ оплаты, удобный для нашего клиента:</p>
-            <ul>
-                <li>Оплата наличными</li>
-                <li>Оплата банковской картой</li>
-            </ul>		</div>
-                  </div>
 
-            -->
+                                    <!--<div class="delivery_info">
+                                                    <div class="moduletable">
+                                                  
+                                             <h3>Доставка и оплата</h3>
+                                            <h4>Bodypit доставляет заказы по всей Молдове!</h4>
+                                            <ul>
+                                                <li>Мы доставим Ваши покупки по удобному для вас адресу в Кишиневе совершенно бесплатно при заказе от 300 леев.</li>
+                                                <li>Также мы предлагаем Express доставку в течении 3-х часов (по Кишиневу) по отдельному тарифу.</li>
+                                                <li>Стоимость доставки по территории Молдовы оговаривается отдельно.</li>
+                                            </ul>
+                                            <h4>Способ оплаты</h4>
+                                            <p>Мы принимаем любой способ оплаты, удобный для нашего клиента:</p>
+                                            <ul>
+                                                <li>Оплата наличными</li>
+                                                <li>Оплата банковской картой</li>
+                                            </ul>		</div>
+                                                  </div>
+
+                                            -->
                                 </div>
                                 <div class="product_info uk-width-1-1">
 

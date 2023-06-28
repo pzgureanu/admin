@@ -12,6 +12,7 @@ class Setting extends Model
         'phone_number',
         'email',
         'schedule',
+        'weekend_schedule',
         'instagram',
         'facebook',
         'messenger',

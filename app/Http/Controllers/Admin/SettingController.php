@@ -53,6 +53,7 @@ class SettingController extends Controller
         $setting->phone_number = $request->phone_number;
         $setting->email = $request->email;
         $setting->schedule = $request->schedule;
+        $setting->weekend_schedule = $request->weekend_schedule;
         $setting->instagram = $request->instagram;
         $setting->facebook = $request->facebook;
         $setting->messenger = $request->messenger;
@@ -61,7 +62,7 @@ class SettingController extends Controller
 
         $setting->save();
 
-        return redirect()->route('settings.edit', $setting->id);
+        return redirect()->route('settings.index', $setting->id);
     }
 
 
